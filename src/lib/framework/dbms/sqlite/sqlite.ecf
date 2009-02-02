@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<system xmlns="http://www.eiffel.com/developers/xml/configuration-1-4-0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.eiffel.com/developers/xml/configuration-1-4-0 http://www.eiffel.com/developers/xml/configuration-1-4-0.xsd" name="sqlite" uuid="41127D9A-5A5D-4D2A-AC74-B85E799B7F13" library_target="sqlite">
+	<target name="sqlite">
+		<file_rule>
+			<exclude>/\.svn</exclude>
+		</file_rule>
+		<option>
+			<assertions precondition="true" postcondition="true" check="true" invariant="true" loop="true"/>
+		</option>
+		<external_include location="$JFIAT_DEV\src\lib\framework\dbms\sqlite\Clib"/>
+		<external_object location="$JFIAT_DEV\src\lib\framework\dbms\sqlite\Clib\sqlite3.obj">
+			<condition>
+				<platform value="windows"/>
+				<custom name="sqlitedynamic" excluded_value="true"/>
+			</condition>
+		</external_object>
+		<library name="base" location="$ISE_LIBRARY\library\base\base.ecf"/>
+		<cluster name="src" location=".\" recursive="true">
+			<file_rule>
+				<exclude>/tests$</exclude>
+			</file_rule>
+			<file_rule>
+				<exclude>/dll$</exclude>
+				<condition>
+					<custom name="sqlitedynamic" excluded_value="true"/>
+				</condition>
+			</file_rule>
+			<file_rule>
+				<exclude>/static$</exclude>
+				<condition>
+					<custom name="sqlitedynamic" value="true"/>
+				</condition>
+			</file_rule>
+		</cluster>
+	</target>
+</system>
